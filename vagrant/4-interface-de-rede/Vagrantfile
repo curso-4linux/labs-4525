@@ -1,0 +1,26 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "server1" do |server1|
+    server1.vm.box = "centos/8"
+    server1.vm.network "private_network", ip: "172.27.11.10"
+    server1.vm.provision "shell", inline: <<-SHELL
+      dnf install -y httpd
+      systemctl enable httpd
+      systemctl start httpd
+    SHELL
+  end
+  config.vm.define "server2" do |server2|
+    server2.vm.box = "debian/buster64"
+    server1.vm.network "private_network", ip: "172.27.11.20"
+    server2.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y apache2
+    SHELL
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    id devops # pergunta pelo usuário devops, guarda em $? o status
+    if [ "$?" -ne 0 ]; then # not equal 0, diferente de 0 é falha
+      useradd -m -d /home/devops -s /bin/bash devops
+    fi
+  SHELL
+end

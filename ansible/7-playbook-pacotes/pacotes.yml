@@ -1,0 +1,11 @@
+- name: Instala alguns pacotes
+  hosts: all
+  become: yes
+  vars:
+    pacote: vim
+    estado: present
+  tasks:
+  - name: Instalando pacote
+    package:
+      name: '{{ pacote }}'
+      state: '{{ estado }}'

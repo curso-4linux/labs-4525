@@ -1,0 +1,50 @@
+172.27.11.10:
+  nodename: automation
+  hostname: 172.27.11.10
+  osVersion: 4.19.0-9-amd64
+  osFamily: unix
+  osArch: amd64
+  description: Rundeck server node
+  osName: Linux
+  username: rundeck
+  tags: ['jenkins', 'rundeck', 'gitea']
+172.27.11.20:
+  nodename: balancer
+  hostname: 172.27.11.20
+  osVersion: 4.19.0-9-amd64
+  osFamily: unix
+  osArch: amd64
+  description: Balancer node
+  osName: Linux
+  username: rundeck
+  tags: ['balancer', 'haproxy']
+172.27.11.30:
+  nodename: database
+  hostname: 172.27.11.30
+  osVersion: 4.19.0-9-amd64
+  osFamily: unix
+  osArch: amd64
+  description: Database node
+  osName: Linux
+  username: rundeck
+  tags: ['database', 'mysql']
+172.27.11.100:
+  nodename: docker1
+  hostname: 172.27.11.100
+  osVersion: 4.19.0-9-amd64
+  osFamily: unix
+  osArch: amd64
+  description: Docker node
+  osName: Linux
+  username: rundeck
+  tags: ['docker', 'apps']
+172.27.11.200:
+  nodename: docker2
+  hostname: 172.27.11.200
+  osVersion: 4.19.0-9-amd64
+  osFamily: unix
+  osArch: amd64
+  description: Docker node
+  osName: Linux
+  username: rundeck
+  tags: ['docker', 'apps']

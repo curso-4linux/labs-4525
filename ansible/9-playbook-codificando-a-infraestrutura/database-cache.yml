@@ -1,0 +1,27 @@
+- hosts: database
+  become: yes
+  tasks:
+  - name: Garantindo MariaDB e Memcached
+    package:
+      name: ['mariadb-server', 'memcached']
+      state: present
+  - name: Garantindo MariaDB e Memcached na interface privada
+    lineinfile:
+      path: '{{ item.path }}'
+      line: '{{ item.line }}'
+      regex: '{{ item.regex }}'
+    loop:
+    - path: /etc/sysconfig/memcached
+      line: OPTIONS="-l 0.0.0.0"
+      regex: OPTIONS="-l
+    - path: /etc/my.cnf.d/mariadb-server.cnf
+      line: bind-address=172.27.11.30
+      regex: '#?bind-address\s*=\s*[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}'
+  - name: Garantindo serviço do MariaDB e Memcached
+    service:
+      name: '{{ item }}'
+      state: started
+      enabled: yes
+    loop:
+    - mariadb
+    - memcached

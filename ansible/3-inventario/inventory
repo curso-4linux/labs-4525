@@ -1,0 +1,9 @@
+[all:vars]
+ansible_python_interpreter=python3
+
+[maquinas]
+172.27.11.10
+172.27.11.20
+172.27.11.30
+172.27.11.100
+172.27.11.200

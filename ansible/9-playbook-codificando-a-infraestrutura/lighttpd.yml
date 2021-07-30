@@ -1,0 +1,12 @@
+- hosts: docker
+  become: yes
+  tasks:
+  - name: Garantindo o epel-release em CentOS
+    package:
+      name: epel-release
+      state: present
+    when: ansible_distribution|lower == 'centos'
+  - name: Garantindo Lighttpd
+    package:
+      name: lighttpd
+      state: present

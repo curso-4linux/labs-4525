@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+  - ping:
+- hosts: balancer
+  tasks:
+  - command: cat /etc/hosts

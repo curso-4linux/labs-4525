@@ -1,0 +1,11 @@
+[all:vars]
+ansible_python_interpreter=python3
+ansible_ssh_private_key_file=/root/keys/ansible
+ansible_ssh_user=ansible
+
+[maquinas]
+172.27.11.10
+172.27.11.20
+172.27.11.30
+172.27.11.100
+172.27.11.200

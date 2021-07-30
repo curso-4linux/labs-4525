@@ -1,0 +1,21 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "server1" do |server1|
+    server1.vm.box = "centos/8"
+    server1.vm.provision "shell", inline: <<-SHELL
+      dnf install -y httpd
+      systemctl enable httpd
+      systemctl start httpd
+    SHELL
+  end
+  config.vm.define "server2" do |server2|
+    server2.vm.box = "debian/buster64"
+    server2.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y apache2
+    SHELL
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    useradd -m -d /home/devops -s /bin/bash devops
+  SHELL
+end

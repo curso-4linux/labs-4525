@@ -1,0 +1,5 @@
+172.27.11.10 ansible_python_interpreter=python3
+172.27.11.20 ansible_python_interpreter=python3
+172.27.11.30 ansible_python_interpreter=python3
+172.27.11.100 ansible_python_interpreter=python3
+172.27.11.200 ansible_python_interpreter=python3
