@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   end
   config.vm.define "#{NAME}2" do |server2|
     server2.vm.box = "debian/buster64"
-    server1.vm.network "private_network", ip: NETWORK + '10'
+    server2.vm.network "private_network", ip: NETWORK + '10'
     server2.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y apache2 #{PACKAGES}
