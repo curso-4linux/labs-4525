@@ -1,27 +1,28 @@
 version: '3'
+
 services:
   mariadb:
     image: mariadb
     environment:
-    - MYSQL_USER=devops
-    - MYSQL_PASSWORD=4linux
-    - MYSQL_DATABASE=devops
-    - MYSQL_ROOT_PASSWORD=!Abc123
+      - MYSQL_USER=devops
+      - MYSQL_PASSWORD=4linux
+      - MYSQL_DATABASE=devops
+      - MYSQL_ROOT_PASSWORD=!Abc123
     volumes:
-    - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
   memcached:
     image: memcached:alpine
   app:
     image: insira_aqui_o_nome_de_sua_conta_no_docker_hub/php-app
     environment:
-    - DB_HOST=mariadb
-    - DB_PORT=3306
-    - DB_NAME=devops
-    - DB_USER=devops
-    - DB_PASS=4linux
-    - MEMCACHED_HOST=memcached:11211
-   ports:
-   - 8080:80
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_NAME=devops
+      - DB_USER=devops
+      - DB_PASS=4linux
+      - MEMCACHED_HOST=memcached:11211
+    ports:
+      - 8080:80
 
 volumes:
   mysql_data: {}
