@@ -12,7 +12,7 @@ services:
   memcached:
     image: memcached:alpine
   app:
-    image: hectorvido/php-app
+    image: insira_aqui_o_nome_de_sua_conta_no_docker_hub/php-app
     environment:
     - DB_HOST=mariadb
     - DB_PORT=3306
