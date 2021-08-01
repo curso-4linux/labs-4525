@@ -1,0 +1,29 @@
+description: Viewer, visualize all jobs.
+context:
+  application: 'rundeck'
+for:
+  project:
+    - equals:
+        name: 'infra-agil'
+      allow: 'read'
+  storage:
+    - equals:
+        name: 'infra-agil'
+      allow: 'read'
+by:
+  group: viewer
+---
+description: Viewer, visualize all jobs.
+context:
+  project: 'infra-agil'
+for:
+  resource:
+  - allow: 'read'
+  adhoc:
+  - allow: [read,run]
+  job:
+  - allow: [read,run]
+  node:
+  - allow: [read,run]
+by:
+  group: viewer
