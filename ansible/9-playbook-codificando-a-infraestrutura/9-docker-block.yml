@@ -21,14 +21,12 @@
         state: present
         filename: docker-ce
     when: ansible_distribution|lower == 'debian'
-  - name: Bloco do CentOS
-    when: ansible_distribution|lower == 'centos'
-  - name: Garantindo docker-ce
-    package:
-      name: docker-ce
-      state: present
-  - name:
-    service:
-      name: docker
-      enabled: yes
-      state: started
+    - name: Garantindo docker-ce
+      package:
+        name: docker-ce
+        state: present
+    - name:
+      service:
+        name: docker
+        enabled: yes
+        state: started
