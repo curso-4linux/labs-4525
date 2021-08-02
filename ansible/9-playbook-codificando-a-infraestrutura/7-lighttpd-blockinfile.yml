@@ -14,7 +14,6 @@
       name: epel-release
       state: present
     when: ansible_distribution|lower == 'centos'
-  tasks:
   - name: Garantindo Lighttpd
     package:
       name: lighttpd
