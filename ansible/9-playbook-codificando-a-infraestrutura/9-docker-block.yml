@@ -21,7 +21,7 @@
         state: present
         filename: docker-ce
     when: ansible_distribution|lower == 'debian'
-  - name: Garantindo docker-ce
+  - name: Garantindo docker
     package:
       name: podman-docker
       state: present
@@ -30,3 +30,4 @@
       name: podman
       enabled: yes
       state: started
+    when: ansible_distribution|lower == 'centos'
