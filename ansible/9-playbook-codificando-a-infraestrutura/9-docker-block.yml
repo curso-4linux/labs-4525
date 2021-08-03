@@ -23,10 +23,10 @@
     when: ansible_distribution|lower == 'debian'
   - name: Garantindo docker-ce
     package:
-      name: docker-ce
+      name: podman-docker
       state: present
   - name:
     service:
-      name: docker
+      name: podman
       enabled: yes
       state: started
