@@ -15,9 +15,3 @@ ansible_ssh_user=ansible
 [docker]
 172.27.11.100
 172.27.11.200
-
-[docker1]
-172.27.11.100
-
-[docker2]
-172.27.11.200
