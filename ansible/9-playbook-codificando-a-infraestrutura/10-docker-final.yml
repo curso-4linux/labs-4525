@@ -3,7 +3,8 @@
   tasks:
   - name: Removendo pacotes antigos
     package:
-      name: ['docker', 'docker-engine', 'docker.io', 'containerd', 'runc', ' docker-client', 'docker-client-latest', 'docker-common', 'docker- latest', 'docker-latest-logrotate', 'docker-logrotate']
+      name: ['docker', 'docker-engine', 'docker.io', 'containerd', 'runc', ' docker-client', 'docker-client-lat
+est', 'docker-common', 'docker-latest', 'docker-latest-logrotate', 'docker-logrotate']
       state: absent
   - name: Bloco do Debian
     block:
@@ -21,20 +22,20 @@
         state: present
         filename: docker-ce
     when: ansible_distribution|lower == 'debian'
-  - name: Bloco do CentOS
+  - name: Bloco do Centos
     block:
     - name: Garantindo chave do repositório
       rpm_key:
         state: present
         key: https://download.docker.com/linux/centos/gpg
-  - name: Garantindo repositório
-    yum_repository:
-      name: docker-ce
-      baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
-      description: Docker CE Stable
-      file: docker-ce
+    - name: Garantindo repositório
+      yum_repository:
+        name: docker-ce
+        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+        description: Docker CE Stable
+        file: docker-ce
     when: ansible_distribution|lower == 'centos'
-  - name: Garantindo docker-ce
+  - name: Garantindo docker
     package:
       name: docker-ce
       state: present
@@ -47,4 +48,4 @@
     get_url:
       url: "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
       dest: /usr/bin/docker-compose
-      mode: '0755'
+      mode: ’0755’
