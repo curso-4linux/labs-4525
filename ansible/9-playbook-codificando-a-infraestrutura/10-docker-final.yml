@@ -3,8 +3,7 @@
   tasks:
   - name: Removendo pacotes antigos
     package:
-      name: ['docker', 'docker-engine', 'docker.io', 'containerd', 'runc', ' docker-client', 'docker-client-lat
-est', 'docker-common', 'docker-latest', 'docker-latest-logrotate', 'docker-logrotate']
+      name: ['docker', 'docker-engine', 'docker.io', 'containerd', 'runc', ' docker-client', 'docker-client-latest', 'docker-common', 'docker-latest', 'docker-latest-logrotate', 'docker-logrotate']
       state: absent
   - name: Bloco do Debian
     block:
@@ -48,4 +47,4 @@ est', 'docker-common', 'docker-latest', 'docker-latest-logrotate', 'docker-logro
     get_url:
       url: "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
       dest: /usr/bin/docker-compose
-      mode: ’0755’
+      mode: '0755'
