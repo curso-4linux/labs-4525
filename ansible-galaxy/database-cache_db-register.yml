@@ -49,5 +49,5 @@
       name: devops
       password: 4linux
       priv: infraagil.*:ALL
-      host: ’%’
+      host: '%'
       login_unix_socket: /var/lib/mysql/mysql.sock
