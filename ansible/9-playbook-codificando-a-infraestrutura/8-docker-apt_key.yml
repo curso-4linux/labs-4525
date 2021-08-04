@@ -7,7 +7,7 @@
       state: absent
   - name: Garantindo pré-dependências
     package:
-      name: ['apt-transport-https', 'ca-certificates', 'gnupg-agent', 'software- properties-common']
+      name: ['apt-transport-https', 'ca-certificates', 'gnupg-agent', 'software-properties-common']
       state: present
   - name: Garantindo chave do repositório
     apt_key:
