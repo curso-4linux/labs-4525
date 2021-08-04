@@ -37,17 +37,3 @@
       name: infraagil
       login_unix_socket: /var/lib/mysql/mysql.sock
     register: database
-  - name: Garantindo dados iniciais
-    community.mysql.mysql_db:
-      name: infraagil
-      login_unix_socket: /var/lib/mysql/mysql.sock
-      state: import
-      target: /tmp/dump.sql
-    when: database.changed
-  - name: Garantindo usuário da Aplicação
-    community.mysql.mysql_user:
-      name: devops
-      password: 4linux
-      priv: infraagil.*:ALL
-      host: '%'
-      login_unix_socket: /var/lib/mysql/mysql.sock
