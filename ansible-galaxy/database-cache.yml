@@ -3,7 +3,7 @@
   tasks:
   - name: Garantindo MariaDB e Memcached
     package:
-      name: ['mariadb-server', 'memcached']
+      name: ['mariadb-server', 'memcached', 'python3-PyMySQL']
       state: present
   - name: Garantindo MariaDB e Memcached na interface privada
     lineinfile:
