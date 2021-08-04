@@ -3,7 +3,7 @@
   tasks:
   - name: Removendo pacotes antigos
     package:
-      name: ['docker', 'docker-engine', 'docker.io', 'containerd', 'runc']
+      name: ['docker', 'docker-engine', 'docker.io', 'containerd', 'runc', ' docker-client', 'docker-client-latest', 'docker-common', 'docker-latest', 'docker-latest-logrotate', 'docker-logrotate']
       state: absent
   - name: Bloco do Debian
     block:
@@ -23,13 +23,23 @@
     when: ansible_distribution|lower == 'debian'
   - name: Bloco do Centos
     block:
-    - name: Garantindo docker
-      package:
-        name: podman-docker
+    - name: Garantindo chave do repositório
+      rpm_key:
         state: present
-    - name:
-      service:
-        name: podman
-        enabled: yes
-        state: started
+        key: https://download.docker.com/linux/centos/gpg
+    - name: Garantindo repositório
+      yum_repository:
+        name: docker-ce
+        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+        description: Docker CE Stable
+        file: docker-ce
     when: ansible_distribution|lower == 'centos'
+  - name: Garantindo docker
+    package:
+      name: docker-ce
+      state: present
+  - name:
+    service:
+      name: docker
+      enabled: yes
+      state: started
