@@ -1,4 +1,4 @@
-- hosts: docker
+- hosts: docker1
   become: yes
   tasks:
   - name: Removendo pacotes antigos
