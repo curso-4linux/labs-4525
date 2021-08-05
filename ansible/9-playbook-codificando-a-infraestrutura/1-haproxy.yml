@@ -12,5 +12,5 @@
   - name: Garantindo serviço do HAProxy
     service:
       name: haproxy
-      state: started
+      state: restarted
       enabled: yes
