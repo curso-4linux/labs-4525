@@ -1,4 +1,4 @@
-- hosts: docker1
+- hosts: docker
   become: yes
   vars:
     user: lighttpd
@@ -9,37 +9,22 @@
       user: www-data
       group: www-data
     when: ansible_distribution|lower == 'debian'
-  - name: Garantindo Lighttpd
-    package:
-      name: lighttpd
-      state: present
   - name: Garantindo o epel-release em CentOS
     package:
       name: epel-release
       state: present
     when: ansible_distribution|lower == 'centos'
-  - name: Garantindo configuração do arquivo lighttpd.conf no Debian
-    template:
-      src: '{{ item }}'
-      dest: /etc/lighttpd/lighttpd.conf
-      owner: root
-    loop:
-    - /root/playbooks/files/debian-lighttpd.conf
-    when: ansible_distribution|lower == 'debian'
-  - name: Garantindo configuração do arquivo lighttpd.conf no CentOS
-    template:
-      src: '{{ item }}'
-      dest: /etc/lighttpd/lighttpd.conf
-      owner: root
-    loop:
-    - /root/playbooks/files/centos-lighttpd.conf
-    when: ansible_distribution|lower == 'centos'
+  - name: Garantindo Lighttpd
+    package:
+      name: lighttpd
+      state: present
   - name: Garantindo configurações
     template:
       src: '{{ item }}'
       dest: /etc/lighttpd
       owner: root
     loop:
+    - /root/playbooks/files/lighttpd.conf
     - /root/playbooks/files/mime-types.conf
   - name: Garantindo diretórios
     file:
@@ -57,9 +42,9 @@
       create: yes
       block: |
         $SERVER["socket"] == ":8080" {
-            proxy.server = ( "" => ( ( "host" => "192.168.10.10", "port" => "80"
-                 )))
-        }  
+          proxy.server = ( "" => ( ( "host" => "192.168.10.10", "port" => "80"
+               )))
+        }
   - name: Garantindo serviço do Lighttpd
     service:
       name: lighttpd
