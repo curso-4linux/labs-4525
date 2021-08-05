@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Fetch') {
+            steps {
+                git 'https://github.com/4linux/4542-site.git'
+                sh 'rm -rf .git'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh "sed -i 's/Distribution/Jenkins - Pipeline/' index.html"
+                withCredentials([sshUserPrivateKey(credentialsId: 'jenkins', keyFileVariable: 'keyfile', passphraseVariable: '', usernameVariable: 'username')]) {
+                    sh "scp -i ${keyfile} -r $WORKSPACE ${username}@172.27.11.100:/tmp/html"
+                    sh "ssh -i ${keyfile} ${username}@172.27.11.100 'sudo rm -rf /srv/www/html && sudo mv /tmp/html /srv/www && sudo chown -R www-data: /srv/www/html'"
+                }
+            }
+        }
+    }
+}
