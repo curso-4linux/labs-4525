@@ -1,0 +1,21 @@
+node {
+    def img = 'insira_aqui_o_nome_de_sua_conta_no_docker_hub/php-login'
+    docker.withServer('172.27.11.100:2375') {
+        stage('Build') {
+            git branch: 'dev', credentialsId: 'jenkins', url: 'git@172.27.11.10:devops/php-login.git'
+            sh 'rm -rf .git*'
+            sh "sed -i 's/8080/80/' docker/Dockerfile"
+            docker.build(img, '-f docker/Dockerfile .')
+
+        }
+        stage('Test') {
+
+        }
+        stage('Save') {
+
+        }
+    }
+    stage('Deploy') {
+
+    }
+}
