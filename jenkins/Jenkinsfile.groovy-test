@@ -11,7 +11,7 @@ node {
         stage('Test') {
           sh "docker-compose -p $JOB_BASE_NAME -f docker/docker-compose.yml up -d"
           sleep 10
-          sh "docker exec -i ${JOB_BASE_NAME}_mysql_1 mysql -u root -p'Abc123!' php < db/dump.sql"
+          sh "docker exec -i ${JOB_BASE_NAME}_mysql_1 mysql -u php -p4linux php < db/dump.sql"
           ip = sh(returnStdout: true, script: "docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${JOB_BASE_NAME}_app_1").trim()
           docker.image('alpine').withRun("--tty --interactive --network ${JOB_BASE_NAME}_default") { alpine ->
               sh "docker exec ${alpine.id} apk add --no-cache curl"
